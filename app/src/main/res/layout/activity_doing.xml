@@ -2,8 +2,15 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/doing_listView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.radbrad.to_dolist.DoingActivity">
 
+    <LinearLayout
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp"></LinearLayout>
 </android.support.constraint.ConstraintLayout>
