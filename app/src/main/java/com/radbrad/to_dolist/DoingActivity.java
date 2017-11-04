@@ -28,7 +28,7 @@ public class DoingActivity extends AppCompatActivity {
 
         ListView lv = (ListView)findViewById(R.id.doing_listView);
 
-        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list_item, R.id.title_textView, list);
+        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list_item, R.id.item_title_textView, list);
 
         lv.setAdapter(adapter);
 
