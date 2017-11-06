@@ -22,7 +22,11 @@
         <activity android:name=".ToDoActivity" />
         <activity android:name=".DoingActivity" />
         <activity android:name=".EntryActivity" />
-        <activity android:name=".ItemDetails"></activity>
+        <activity android:name=".ToDoItemDetails" />
+        <activity
+            android:name=".DoingItemDetails"
+            android:label="@string/title_activity_doing_item_details"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

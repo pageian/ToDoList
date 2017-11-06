@@ -9,9 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ToDoActivity extends AppCompatActivity {
 
     @Override
@@ -35,7 +32,7 @@ public class ToDoActivity extends AppCompatActivity {
 
                 Storage.currTask = Storage.todoQueue.get(currTitle);
 
-                Intent intent = new Intent(getApplicationContext(), ItemDetails.class);
+                Intent intent = new Intent(getApplicationContext(), ToDoItemDetails.class);
                 startActivity(intent);
 
             }

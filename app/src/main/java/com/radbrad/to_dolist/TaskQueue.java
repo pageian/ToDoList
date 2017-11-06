@@ -51,10 +51,28 @@ public class TaskQueue {
 
     }
 
-    public Task removeNext(){
+    public Task remove(){
 
         titles.remove(0);
         return queue.remove(0);
+
+    }
+
+    public Task remove(String title){
+
+        Task task = new Task();
+
+        for(int i = 0; i < queue.size(); i++) {
+
+            if (queue.get(i).getTitle().contentEquals(title)) {
+
+                task = queue.remove(i);
+
+            }
+
+        }
+
+        return task;
 
     }
 
