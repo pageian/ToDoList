@@ -34,7 +34,7 @@
         tools:layout_editor_absoluteX="163dp" />
 
     <Button
-        android:id="@+id/to_done_button"
+        android:id="@+id/to_doing_done_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"

@@ -17,19 +17,19 @@ public class DoingItemDetails extends AppCompatActivity {
         final TextView title = (TextView)findViewById(R.id.doing_title_textView);
         TextView date = (TextView)findViewById(R.id.doing_date_textView);
         TextView desc = (TextView)findViewById(R.id.doing_desc_textView);
-        Button switchBTN = (Button)findViewById(R.id.doing_button);
+        Button doneBTN = (Button)findViewById(R.id.to_doing_done_button);
 
         title.setText(Storage.currTask.getTitle());
         date.setText(Storage.currTask.getDate() + "");
         desc.setText(Storage.currTask.getDesc());
 
-        switchBTN.setOnClickListener(new View.OnClickListener() {
+        doneBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Storage.doingQueue.remove();
 
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), DoingActivity.class);
                 startActivity(intent);
 
                 finish();

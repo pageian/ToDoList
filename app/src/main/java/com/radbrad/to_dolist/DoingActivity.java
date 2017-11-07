@@ -27,13 +27,14 @@ public class DoingActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 String currTitle = ((TextView)view.findViewById(R.id.item_title_textView)).getText().toString();
-
                 Storage.currTask = Storage.doingQueue.get(currTitle);
 
-                Intent intent = new Intent(getApplicationContext(), ToDoItemDetails.class);
+                Intent intent = new Intent(getApplicationContext(), DoingItemDetails.class);
                 startActivity(intent);
+                finish();
 
             }
         });
     }
+
 }
