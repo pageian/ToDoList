@@ -18,9 +18,9 @@ public class Task {
 
     }
 
-    public Task(String title, String desc, int yr, int mth, int day){
+    public Task(String title, String desc, int yr, int mth, int day, int hour, int min){
 
-        Date date = new Date(yr, mth, day);
+        Date date = new Date(yr, mth, day, hour, min);
 
         this.title = title;
         this.desc = desc;
@@ -37,7 +37,7 @@ public class Task {
 
     public String getDesc(){
 
-        return title;
+        return desc;
 
     }
 
@@ -60,9 +60,9 @@ public class Task {
 
     }
 
-    public void setDate(int yr, int mth, int day){
+    public void setDate(int yr, int mth, int day, int hour, int min){
 
-        Date date = new Date(yr, mth, day);
+        Date date = new Date(yr, mth, day, hour, min);
 
         this.date = date;
 

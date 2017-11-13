@@ -44,7 +44,7 @@ public class EntryActivity extends AppCompatActivity {
                 LayoutInflater inflate = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
                 View popupView = inflate.inflate(R.layout.date_entry_window, null);
 
-                int width = ConstraintLayout.LayoutParams.WRAP_CONTENT;
+                final int width = ConstraintLayout.LayoutParams.WRAP_CONTENT;
                 int height = ConstraintLayout.LayoutParams.WRAP_CONTENT;
                 boolean focusable = true;
                 final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
@@ -60,6 +60,8 @@ public class EntryActivity extends AppCompatActivity {
                         year = dp.getYear();
                         month = dp.getMonth();
                         day = dp.getDayOfMonth();
+
+                        dateTV.setText(day + "-" + month + "-" + year);
 
                     }
                 });
@@ -92,6 +94,8 @@ public class EntryActivity extends AppCompatActivity {
                         hour = timePicker.getHour();
                         minute = timePicker.getMinute();
 
+                        timeTV.setText(hour + ":" + minute);
+
                     }
                 });
 
@@ -105,7 +109,7 @@ public class EntryActivity extends AppCompatActivity {
                 String title = titleET.getText().toString();
                 String desc = descET.getText().toString();
 
-                Task task = new Task(title, desc, year , month, day);
+                Task task = new Task(title, desc, year , month, day, hour, minute);
                 Storage.todoQueue.add(task);
 
                 finish();
