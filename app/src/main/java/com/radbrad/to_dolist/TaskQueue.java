@@ -1,12 +1,13 @@
 package com.radbrad.to_dolist;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by radbradmac on 2017-11-04.
  */
 
-public class TaskQueue {
+public class TaskQueue implements Serializable{
 
     //defining vars
     ArrayList<Task> queue;

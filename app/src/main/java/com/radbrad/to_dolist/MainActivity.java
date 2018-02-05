@@ -2,14 +2,22 @@ package com.radbrad.to_dolist;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        readFromStorage();
 
         Button toDo = (Button)findViewById(R.id.to_do_button);
         final Button doing = (Button)findViewById(R.id.doing_button);
@@ -77,4 +87,24 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    //retrieves queues
+    private void readFromStorage(){
+
+        try{
+
+            Storage.readQueues(getApplicationContext());
+
+        }catch(IOException e){
+
+            Log.e("InternalStorage", e.getMessage());
+
+        }catch(ClassNotFoundException e){
+
+            Log.e("InternalStorage", e.getMessage());
+
+        }
+
+    }
+
 }

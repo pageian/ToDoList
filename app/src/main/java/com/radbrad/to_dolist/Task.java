@@ -1,12 +1,13 @@
 package com.radbrad.to_dolist;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by radbradmac on 2017-11-04.
  */
 
-public class Task {
+public class Task implements Serializable{
 
     //defining vars
     String title, desc;

@@ -1,9 +1,11 @@
 package com.radbrad.to_dolist;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,12 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.util.Date;
 
 public class EntryActivity extends AppCompatActivity {
@@ -112,10 +120,21 @@ public class EntryActivity extends AppCompatActivity {
                 Task task = new Task(title, desc, year , month, day, hour, minute);
                 Storage.todoQueue.add(task);
 
+                try {
+
+                    Storage.writeQueues(getApplicationContext());
+
+                }catch (IOException e){
+
+                    Log.e("InternalStorage", e.getMessage());
+
+                }
+
                 finish();
 
             }
         });
 
     }
+
 }
