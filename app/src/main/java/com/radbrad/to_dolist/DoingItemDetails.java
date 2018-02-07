@@ -25,19 +25,18 @@ public class DoingItemDetails extends AppCompatActivity {
         TextView desc = (TextView)findViewById(R.id.doing_desc_textView);
         Button doneBTN = (Button)findViewById(R.id.to_doing_done_button);
 
-        title.setText(Storage.currTask.getTitle());
-        date.setText(Storage.currTask.getDate() + "");
-        desc.setText(Storage.currTask.getDesc());
+        title.setText(Storage.getCurrTask().getTitle());
+        date.setText(Storage.getCurrTask().getDate() + "");
+        desc.setText(Storage.getCurrTask().getDesc());
 
         doneBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Storage.doingQueue.remove();
-                //saveToStorage();
-
+                //removing Task from Queue and saving change
                 try{
 
+                    Storage.removeFromDoing(Storage.getCurrTask());
                     Storage.writeQueues(getApplicationContext());
 
                 }catch(IOException e){
@@ -53,34 +52,6 @@ public class DoingItemDetails extends AppCompatActivity {
 
             }
         });
-
-    }
-
-    private void saveToStorage(){
-
-        try{
-
-            //TO-DO Queue storage
-            FileOutputStream toDoFOS = openFileOutput("to_do_storage", Context.MODE_PRIVATE);
-            ObjectOutputStream toDoOOS = new ObjectOutputStream(toDoFOS);
-            toDoOOS.writeObject(Storage.todoQueue);
-            toDoOOS.flush();
-            toDoOOS.close();
-            toDoFOS.close();
-
-            //DOING Queue storage
-            FileOutputStream doingFOS = openFileOutput("doing_storage", Context.MODE_PRIVATE);
-            ObjectOutputStream doingOOS = new ObjectOutputStream(doingFOS);
-            doingOOS.writeObject(Storage.doingQueue);
-            doingOOS.flush();
-            doingOOS.close();
-            doingFOS.close();
-
-        }catch(Exception e){
-
-            Log.e("InternalStorage", e.getMessage());
-
-        }
 
     }
 

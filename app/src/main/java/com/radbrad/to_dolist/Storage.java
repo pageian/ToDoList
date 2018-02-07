@@ -18,9 +18,12 @@ public class Storage{
 
     private Storage(){}
 
-    public static TaskQueue doingQueue = new TaskQueue();
-    public static TaskQueue todoQueue = new TaskQueue();
-    public static Task currTask;
+    private static int notifMin;
+    private static int notifHour;
+    private static int notifInterval = 5;
+    private static TaskQueue doingQueue = new TaskQueue();
+    private static TaskQueue todoQueue = new TaskQueue();
+    private static Task currTask;
 
     //reads queues from File
     public static void readQueues(Context context) throws IOException, ClassNotFoundException{
@@ -41,7 +44,7 @@ public class Storage{
 
     }
 
-    //updates changes of both queues to File
+    //writes changes of both queues to File
     public static void writeQueues(Context context) throws IOException{
 
         //todoQueue
@@ -57,6 +60,115 @@ public class Storage{
         doingOOS.writeObject(doingQueue);
         doingOOS.close();
         doingFOS.close();
+
+    }
+
+    //writes notification settings to File
+   /* public static void writeNotifTimes(Context context){
+
+        //minute
+        FileOutputStream minFOS = context.openFileOutput("notif_min_storage", Context.MODE_PRIVATE);
+        ObjectOutputStream minOOS = new ObjectOutputStream(minFOS);
+        minOOS.writeObject(notifMin);
+        minOOS.close();
+        minFOS.close();
+
+        //hour
+        FileOutputStream hourFOS = context.openFileOutput("notif_hour_storage", Context.MODE_PRIVATE);
+        ObjectOutputStream hourOOS = new ObjectOutputStream(hourFOS);
+        hourOOS.writeObject(notifHour);
+        hourOOS.close();
+        hourFOS.close();
+
+    }
+
+    //reads notification settings from File
+    public static  void readNotifTimes(Context context){
+
+        //minute
+        FileInputStream minFIS = context.openFileInput("notif_min_storage");
+        ObjectInputStream minOIS = new ObjectInputStream(minFIS);
+        notifMin = (TaskQueue) minOIS.readObject();
+        minOIS.close();
+        minFIS.close();
+
+        //hour
+        FileInputStream hourFIS = context.openFileInput("notif_hour_storage");
+        ObjectInputStream hourOIS = new ObjectInputStream(hourFIS);
+        notifHour = (TaskQueue) hourOIS.readObject();
+        hourOIS.close();
+        hourOIS.close();
+
+    }*/
+
+    //getters
+    public static int getNotifMin(){
+
+        return notifMin;
+
+    }public static int getNotifHour(){
+
+        return notifHour;
+
+    }public static int getNotifInterval(){
+
+        return notifInterval;
+
+    }public static TaskQueue getTodoQueue(){
+
+        return todoQueue;
+
+    }public static TaskQueue getDoingQueue(){
+
+        return doingQueue;
+
+    }public static Task getCurrTask(){
+
+        return currTask;
+
+    }
+
+    //setters
+    public static void setNotifMin(int minute) {
+
+        notifMin = minute;
+
+    }public static void setNotifHour(int hour){
+
+        notifHour = hour;
+
+    }public static void setTodoQueue(TaskQueue queue){
+
+        todoQueue = queue;
+
+    }public static void setDoingQueue(TaskQueue queue){
+
+        doingQueue = queue;
+
+    }public static void setCurrTask(Task task){
+
+        currTask = task;
+
+    }
+
+    //adds task to todoQueue
+    public static void addTodo(Task task){
+
+        todoQueue.add(task);
+
+    }
+
+    //switches task from todo to doing
+    public static void markDoing(Task task){
+
+        doingQueue.add(todoQueue.remove(task.getTitle()));
+
+    }
+
+    //removes stask from doing
+    public static Task removeFromDoing(Task task){
+
+        return doingQueue.remove(task.getTitle());
 
     }
 

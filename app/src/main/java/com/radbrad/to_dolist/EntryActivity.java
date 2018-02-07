@@ -125,10 +125,10 @@ public class EntryActivity extends AppCompatActivity {
                 String desc = descET.getText().toString();
 
                 Task task = new Task(title, desc, year , month, day, hour, minute);
-                Storage.todoQueue.add(task);
 
                 try {
 
+                    Storage.addTodo(task);
                     Storage.writeQueues(getApplicationContext());
 
                 }catch (IOException e){

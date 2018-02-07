@@ -16,11 +16,11 @@ public class ToDoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to_do);
 
-        Storage.currTask = new Task();
+        Storage.setCurrTask(new Task());
 
         ListView lv = (ListView)findViewById(R.id.to_do_listView);
 
-        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list_item, R.id.item_title_textView, Storage.todoQueue.titles);
+        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list_item, R.id.item_title_textView, Storage.getTodoQueue().titles);
 
         lv.setAdapter(adapter);
 
@@ -29,7 +29,7 @@ public class ToDoActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 String currTitle = ((TextView)view.findViewById(R.id.item_title_textView)).getText().toString();
-                Storage.currTask = Storage.todoQueue.get(currTitle);
+                Storage.setCurrTask(Storage.getTodoQueue().get(currTitle));
 
                 Intent intent = new Intent(getApplicationContext(), ToDoItemDetails.class);
                 startActivity(intent);

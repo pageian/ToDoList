@@ -18,7 +18,7 @@ public class DoingActivity extends AppCompatActivity {
 
         ListView lv = (ListView)findViewById(R.id.doing_listView);
 
-        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list_item, R.id.item_title_textView, Storage.doingQueue.titles);
+        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list_item, R.id.item_title_textView, Storage.getDoingQueue().titles);
 
         lv.setAdapter(adapter);
 
@@ -27,7 +27,7 @@ public class DoingActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 String currTitle = ((TextView)view.findViewById(R.id.item_title_textView)).getText().toString();
-                Storage.currTask = Storage.doingQueue.get(currTitle);
+                Storage.setCurrTask(Storage.getDoingQueue().get(currTitle));
 
                 Intent intent = new Intent(getApplicationContext(), DoingItemDetails.class);
                 startActivity(intent);

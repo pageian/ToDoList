@@ -25,19 +25,17 @@ public class ToDoItemDetails extends AppCompatActivity {
         TextView desc = (TextView)findViewById(R.id.to_do_desc_textView);
         Button doingBTN = (Button)findViewById(R.id.to_do_doing_button);
 
-        title.setText(Storage.currTask.getTitle());
-        date.setText(Storage.currTask.getDate() + "");
-        desc.setText(Storage.currTask.getDesc());
+        title.setText(Storage.getCurrTask().getTitle());
+        date.setText(Storage.getCurrTask().getDate() + "");
+        desc.setText(Storage.getCurrTask().getDesc());
 
         doingBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Task newTask = Storage.todoQueue.remove();
-                Storage.doingQueue.add(newTask);
-
                 try{
 
+                    Storage.markDoing(Storage.getCurrTask());
                     Storage.writeQueues(getApplicationContext());
 
                 }catch(IOException e){
