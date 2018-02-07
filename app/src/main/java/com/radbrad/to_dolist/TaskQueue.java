@@ -67,6 +67,7 @@ public class TaskQueue implements Serializable{
 
             if (queue.get(i).getTitle().contentEquals(title)) {
 
+                titles.remove(i);
                 task = queue.remove(i);
 
             }
