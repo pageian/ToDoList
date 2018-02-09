@@ -4,4 +4,5 @@
     <string name="title_activity_doing_item_details">DoingItemDetails</string>
     <string name="notif_title">TITLE</string>
     <string name="notif_text">Text</string>
+    <string name="title_activity_settings">SettingsActivity</string>
 </resources>

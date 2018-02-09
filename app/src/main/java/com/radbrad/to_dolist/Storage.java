@@ -6,9 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 
 /**
  * Created by radbradmac on 2017-11-04.
@@ -18,9 +16,12 @@ public class Storage{
 
     private Storage(){}
 
+    /**
+     * NOTE: notifInterval must be an odd int greater than 1
+     */
+    private static int notifInterval = 5;
     private static int notifMin;
     private static int notifHour;
-    private static int notifInterval = 5;
     private static TaskQueue doingQueue = new TaskQueue();
     private static TaskQueue todoQueue = new TaskQueue();
     private static Task currTask;
@@ -64,7 +65,7 @@ public class Storage{
     }
 
     //writes notification settings to File
-   /* public static void writeNotifTimes(Context context){
+    public static void writeNotifTimes(Context context) throws IOException{
 
         //minute
         FileOutputStream minFOS = context.openFileOutput("notif_min_storage", Context.MODE_PRIVATE);
@@ -83,23 +84,23 @@ public class Storage{
     }
 
     //reads notification settings from File
-    public static  void readNotifTimes(Context context){
+    public static  void readNotifTimes(Context context) throws IOException, ClassNotFoundException{
 
         //minute
         FileInputStream minFIS = context.openFileInput("notif_min_storage");
         ObjectInputStream minOIS = new ObjectInputStream(minFIS);
-        notifMin = (TaskQueue) minOIS.readObject();
+        notifMin = (int) minOIS.readObject();
         minOIS.close();
         minFIS.close();
 
         //hour
         FileInputStream hourFIS = context.openFileInput("notif_hour_storage");
         ObjectInputStream hourOIS = new ObjectInputStream(hourFIS);
-        notifHour = (TaskQueue) hourOIS.readObject();
+        notifHour = (int) hourOIS.readObject();
         hourOIS.close();
         hourOIS.close();
 
-    }*/
+    }
 
     //getters
     public static int getNotifMin(){

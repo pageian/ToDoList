@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.NotificationCompat;
@@ -27,6 +28,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import static java.lang.Math.round;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -47,10 +50,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //reading queues
+        //reading Storage Files
         try {
 
             Storage.readQueues(getApplicationContext());
+            Storage.readNotifTimes(getApplicationContext());
 
         }catch (ClassNotFoundException e){
 
@@ -62,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        //calling notifier method
         notifier();
 
         Button toDo = (Button)findViewById(R.id.to_do_button);
@@ -109,6 +114,40 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //manages when sendNotification is called
+    public void notifier(){
+
+        Runnable notifWrapper = new Runnable() {
+            @Override
+            public void run() {
+
+                notifier();
+
+            }
+        };
+
+        //defining current time params
+        int min;
+        int hour;
+
+        //retrieving curr time
+        min = Calendar.getInstance().get(Calendar.MINUTE);
+        hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+
+        //checking if it's time for notification
+        if((Math.abs(Storage.getNotifMin() - min) <= round(Storage.getNotifInterval()/2))
+                &&(Storage.getNotifHour() == hour)){
+            //time for notif
+            sendNotification();
+
+        }
+
+        //waiting to check for notification after interval
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        scheduler.schedule(notifWrapper, Storage.getNotifInterval(), TimeUnit.MINUTES);
+
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -125,53 +164,15 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+
+            Intent settingsIntent = new Intent(getApplicationContext(), SettingsActivity.class);
+            startActivity(settingsIntent);
+
         }
+
+
 
         return super.onOptionsItemSelected(item);
-    }
-
-    //manages when sendNotification is called
-    public void notifier(){
-
-        Runnable notifWrapper = new Runnable() {
-            @Override
-            public void run() {
-
-                notifier();
-
-            }
-        };
-
-        //defining time params
-        int min;
-        int hour;
-        int day;
-        int year;
-
-        //***
-        //eventually put in settings class
-        int notifInterval = 1;
-
-        //retrieving curr time
-        min = Calendar.getInstance().get(Calendar.MINUTE);
-        hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-        day = Calendar.getInstance().get(Calendar.DAY_OF_YEAR);
-        year = Calendar.getInstance().get(Calendar.YEAR);
-
-        //checking if it's time for notif
-        if((Math.abs(Storage.getNotifMin() - min) <= notifInterval)
-                &&(Storage.getNotifHour() == hour)){
-            //time for notif
-            sendNotification();
-
-        }else{
-        //not time for notif
-            ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-            scheduler.schedule(notifWrapper, Storage.getNotifInterval(), TimeUnit.MINUTES);
-
-        }
-
     }
 
 }
