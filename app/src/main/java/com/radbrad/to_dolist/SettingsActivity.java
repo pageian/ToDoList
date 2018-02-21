@@ -9,7 +9,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -30,8 +29,8 @@ public class SettingsActivity extends AppCompatActivity {
         minute = Storage.getNotifMin();
         hour = Storage.getNotifHour();
 
-        final TextView time_tv = (TextView)findViewById(R.id.notif_time_textView);
-        Button submit_button = (Button)findViewById(R.id.notif_submit_button);
+        final TextView time_tv = findViewById(R.id.notif_time_textView);
+        Button submit_button = findViewById(R.id.notif_submit_button);
 
         time_tv.setText(hour + ":" + minute);
 
@@ -40,7 +39,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                ConstraintLayout settingsLayout = (ConstraintLayout)findViewById(R.id.settings_layout);
+                ConstraintLayout settingsLayout = findViewById(R.id.settings_layout);
 
                 LayoutInflater inflate = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
                 View popupView = inflate.inflate(R.layout.time_entry_window, null);
@@ -52,7 +51,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                 popupWindow.showAtLocation(settingsLayout, Gravity.CENTER, 0, 0);
 
-                final TimePicker timePicker = (TimePicker)popupView.findViewById(R.id.timePicker);
+                final TimePicker timePicker = popupView.findViewById(R.id.timePicker);
 
                 popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
                     @Override

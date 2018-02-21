@@ -16,7 +16,7 @@ public class DoingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doing);
 
-        ListView lv = (ListView)findViewById(R.id.doing_listView);
+        ListView lv = findViewById(R.id.doing_listView);
 
         ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list_item, R.id.item_title_textView, Storage.getDoingQueue().titles);
 

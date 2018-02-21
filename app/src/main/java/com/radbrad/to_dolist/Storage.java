@@ -166,7 +166,7 @@ public class Storage{
 
     }
 
-    //removes stask from doing
+    //removes task from doing
     public static Task removeFromDoing(Task task){
 
         return doingQueue.remove(task.getTitle());

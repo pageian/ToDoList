@@ -18,7 +18,7 @@ public class ToDoActivity extends AppCompatActivity {
 
         Storage.setCurrTask(new Task());
 
-        ListView lv = (ListView)findViewById(R.id.to_do_listView);
+        ListView lv = findViewById(R.id.to_do_listView);
 
         ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list_item, R.id.item_title_textView, Storage.getTodoQueue().titles);
 

@@ -1,8 +1,6 @@
 package com.radbrad.to_dolist;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,14 +17,7 @@ import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.TimePicker;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutput;
-import java.io.ObjectOutputStream;
-import java.util.Date;
 
 public class EntryActivity extends AppCompatActivity {
 
@@ -44,17 +35,17 @@ public class EntryActivity extends AppCompatActivity {
         //implementing keyboard drop
         setupUI(findViewById(R.id.entry_layout));
 
-        final EditText titleET = (EditText)findViewById(R.id.title_editText);
-        final TextView dateTV = (TextView)findViewById(R.id.dateTextView);
-        final TextView timeTV = (TextView)findViewById(R.id.timeTextView);
-        final EditText descET = (EditText)findViewById(R.id.desc_editText);
-        Button submitBTN = (Button)findViewById(R.id.submit_button);
+        final EditText titleET = findViewById(R.id.title_editText);
+        final TextView dateTV = findViewById(R.id.dateTextView);
+        final TextView timeTV = findViewById(R.id.timeTextView);
+        final EditText descET = findViewById(R.id.desc_editText);
+        Button submitBTN = findViewById(R.id.submit_button);
 
         dateTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                ConstraintLayout entryLayout = (ConstraintLayout)findViewById(R.id.entry_layout);
+                ConstraintLayout entryLayout = findViewById(R.id.entry_layout);
 
                 LayoutInflater inflate = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
                 View popupView = inflate.inflate(R.layout.date_entry_window, null);
@@ -66,7 +57,7 @@ public class EntryActivity extends AppCompatActivity {
 
                 popupWindow.showAtLocation(entryLayout, Gravity.CENTER, 0, 0);
 
-                final DatePicker dp = (DatePicker)popupView.findViewById(R.id.datePicker);
+                final DatePicker dp = popupView.findViewById(R.id.datePicker);
 
                 popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
                     @Override
@@ -88,7 +79,7 @@ public class EntryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                ConstraintLayout entryLayout = (ConstraintLayout)findViewById(R.id.entry_layout);
+                ConstraintLayout entryLayout = findViewById(R.id.entry_layout);
 
                 LayoutInflater inflate = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
                 View popupView = inflate.inflate(R.layout.time_entry_window, null);
@@ -100,7 +91,7 @@ public class EntryActivity extends AppCompatActivity {
 
                 popupWindow.showAtLocation(entryLayout, Gravity.CENTER, 0, 0);
 
-                final TimePicker timePicker = (TimePicker)popupView.findViewById(R.id.timePicker);
+                final TimePicker timePicker = popupView.findViewById(R.id.timePicker);
 
                 popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
                     @Override
