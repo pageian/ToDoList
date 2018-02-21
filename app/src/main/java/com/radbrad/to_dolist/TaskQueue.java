@@ -45,6 +45,12 @@ public class TaskQueue implements Serializable{
 
     }
 
+    public int size(){
+
+        return queue.size();
+
+    }
+
     public void add(Task task){
 
         queue.add(task);

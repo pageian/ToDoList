@@ -22,7 +22,10 @@ public class DoingItemDetails extends AppCompatActivity {
         Button doneBTN = findViewById(R.id.to_doing_done_button);
 
         title.setText(Storage.getCurrTask().getTitle());
-        date.setText(Storage.getCurrTask().getDate() + "");
+        date.setText(Storage.getCurrTask().getDay() + ", "
+                + Storage.getCurrTask().getYear() + ", "
+                + Storage.getCurrTask().getHour() + ":"
+                + Storage.getCurrTask().getMin());
         desc.setText(Storage.getCurrTask().getDesc());
 
         doneBTN.setOnClickListener(new View.OnClickListener() {

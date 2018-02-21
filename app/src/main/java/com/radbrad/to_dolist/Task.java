@@ -10,8 +10,8 @@ import java.util.Date;
 public class Task implements Serializable{
 
     //defining vars
-    String title, desc;
-    Date date;
+    private String title, desc;
+    private int min, hour, day, month, year;
 
     public Task(){
 
@@ -19,13 +19,15 @@ public class Task implements Serializable{
 
     }
 
-    public Task(String title, String desc, int yr, int mth, int day, int hour, int min){
-
-        Date date = new Date(yr, mth, day, hour, min);
+    public Task(String title, String desc, int year, int month, int day, int hour, int min){
 
         this.title = title;
         this.desc = desc;
-        this.date = date;
+        this.min = min;
+        this.hour = hour;
+        this.day = day;
+        this.month = month;
+        this.year = year;
 
     }
 
@@ -42,9 +44,33 @@ public class Task implements Serializable{
 
     }
 
-    public Date getDate(){
+    public int getMin(){
 
-        return date;
+        return min;
+
+    }
+
+    public int getHour(){
+
+        return hour;
+
+    }
+
+    public int getDay(){
+
+        return day;
+
+    }
+
+    public int getMonth(){
+
+        return month;
+
+    }
+
+    public int getYear(){
+
+        return year;
 
     }
 
@@ -58,14 +84,6 @@ public class Task implements Serializable{
     public void setDesc(String desc){
 
         this.desc = desc;
-
-    }
-
-    public void setDate(int yr, int mth, int day, int hour, int min){
-
-        Date date = new Date(yr, mth, day, hour, min);
-
-        this.date = date;
 
     }
 

@@ -23,7 +23,10 @@ public class ToDoItemDetails extends AppCompatActivity {
         Button doingBTN = findViewById(R.id.to_do_doing_button);
 
         title.setText(Storage.getCurrTask().getTitle());
-        date.setText(Storage.getCurrTask().getDate() + "");
+        date.setText(Storage.getCurrTask().getDay() + ", "
+            + Storage.getCurrTask().getYear() + ", "
+            + Storage.getCurrTask().getHour() + ":"
+            + Storage.getCurrTask().getMin());
         desc.setText(Storage.getCurrTask().getDesc());
 
         doingBTN.setOnClickListener(new View.OnClickListener() {

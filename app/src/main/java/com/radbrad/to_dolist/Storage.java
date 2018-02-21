@@ -25,6 +25,8 @@ public class Storage{
     private static TaskQueue doingQueue = new TaskQueue();
     private static TaskQueue todoQueue = new TaskQueue();
     private static Task currTask;
+    private static String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep",
+        "Oct", "Nov", "Dec"};
 
     //reads queues from File
     public static void readQueues(Context context) throws IOException, ClassNotFoundException{
@@ -126,6 +128,10 @@ public class Storage{
     }public static Task getCurrTask(){
 
         return currTask;
+
+    }public static String monthTitle(int i){
+
+        return months[i];
 
     }
 

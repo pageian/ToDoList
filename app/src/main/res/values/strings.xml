@@ -2,7 +2,6 @@
     <string name="app_name">To-Do List</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_doing_item_details">DoingItemDetails</string>
-    <string name="notif_title">TITLE</string>
-    <string name="notif_text">Text</string>
+    <string name="notif_title">Things To Do Today!</string>
     <string name="title_activity_settings">SettingsActivity</string>
 </resources>
